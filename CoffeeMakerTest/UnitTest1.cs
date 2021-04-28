@@ -34,9 +34,11 @@ namespace CoffeeMakerTest
             var service = new Mock<IMakeACoffee>();
             service.Setup(x => x.CheckIngredientAvailability()).Returns(true);
             service.Setup(x => x.CoffeeMaking(2, 4)).Returns("Your Order is received.");
-            StarbuckStore store = new StarbuckStore(new Starbucks());
-            var result = store.OrderCoffee(2, 4);
-            Assert.AreEqual("Your Order is received.", result);
+            //StarbuckStore store = new StarbuckStore(new Starbucks());
+            //var result = store.OrderCoffee(2, 4);
+            StarbuckStore mockStore = new StarbuckStore(service.Object);
+            var mockResult = mockStore.OrderCoffee(2, 4);
+            Assert.AreEqual("Your Order is received.", mockResult);
 
         }
 
